@@ -9,6 +9,9 @@
       <div class="p-4">
         <h2 class="pb-2 text-2xl font-medium">LAET Payments</h2>
         <div class="pb-2">
+          <a class="text-blue-500 hover:underline" href="/take-a-payment">Take a payment</a>
+        </div>
+        <div class="pb-2">
           <a class="text-blue-500 hover:underline" href="/">All payments</a>
           <a class="text-blue-500 hover:underline" href="/today">Today's payments</a>
           <a class="text-blue-500 hover:underline" href="/yesterday">Yesterday's payments</a>
@@ -60,5 +63,12 @@
         </table>
       </div>
     </div>
+    {% if dialog %}
+    <a href="/" class="fixed top-0 left-0 w-full h-full bg-black/50 z-10">
+    </a>
+    <div class="fixed bg-white left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-full min-h-80 max-w-screen-sm z-20 flex justify-center">
+      <p>Take a payment</p>
+    </div>
+    {% endif %}
   </body>
 </html>
