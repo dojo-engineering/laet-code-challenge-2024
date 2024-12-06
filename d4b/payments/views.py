@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .payments_data import payments_data
-from .helpers import sortPaymentsByDate, sumPayments, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments
+from .helpers import sortPaymentsByDate, sumPayments, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, refundPayments
 
 # Create your views here.
 def index(request):
@@ -15,7 +15,8 @@ def index(request):
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total": sumPayments(paymentsToShow),
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow)
     }
     
     return render(request, 'payments.html', context)
@@ -32,7 +33,8 @@ def today(request):
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total": sumPayments(paymentsToShow),
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -49,7 +51,8 @@ def yesterday(request):
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total": sumPayments(paymentsToShow),
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -66,7 +69,8 @@ def thisWeek(request):
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total": sumPayments(paymentsToShow),
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -79,7 +83,8 @@ def take_a_payment(request):
         "payments": paymentsToShow,
         "search": "",
         "status": "",
-        "total": sumPayments(paymentsToShow),
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow),
         "dialog": True,
     }
     

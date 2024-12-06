@@ -4,6 +4,9 @@ from .payments_data import Payment
 def sumPayments(payments: List[Payment]):
     return 0
 
+def refundPayments(payments: List[Payment]): 
+    return 0
+
 def sortPaymentsByDate(payments: List[Payment]):
     return payments
 

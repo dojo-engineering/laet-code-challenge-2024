@@ -1,0 +1,21 @@
+table {
+  width: 1000px;
+}
+
+tr {
+  text-align: center;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  height: 70px;
+}
+
+.titles {
+  font-weight: bolder;
+}
+
+td {
+  padding-right: 40px;
+}

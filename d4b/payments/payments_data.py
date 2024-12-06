@@ -11,7 +11,11 @@ payments_data = [
     Payment(100, "2021-01-01", "Paypal", "Success"),
     Payment(100, "2021-01-01", "Paypal", "Success"),
     Payment(100, "2021-01-01", "Paypal", "Success"),
+    Payment(100, "2021-01-01", "Master Card", "Success"),
     Payment(100, "2021-01-01", "Paypal", "Success"),
     Payment(100, "2021-01-01", "Paypal", "Success"),
+    Payment(100, "2021-01-01", "Master Card", "Success"),
     Payment(100, "2021-01-01", "Paypal", "Success"),
+    Payment(100, "2021-01-01", "Master Card", "Success"),
+    Payment(100, "2021-01-01", "Amex", "Success"),
 ]

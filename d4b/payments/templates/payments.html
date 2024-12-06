@@ -1,74 +1,59 @@
-<html>
-  <head>
-    <title>{{ page_name }} | LAET</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/payments.css" />
-  </head>
-  <body>
-    <div class="w-full flex justify-center">
-      <div class="p-4">
-        <h2 class="pb-2 text-2xl font-medium">LAET Payments</h2>
-        <div class="pb-2">
-          <a class="text-blue-500 hover:underline" href="/take-a-payment">Take a payment</a>
-        </div>
-        <div class="pb-2">
-          <a class="text-blue-500 hover:underline" href="/">All payments</a>
-          <a class="text-blue-500 hover:underline" href="/today">Today's payments</a>
-          <a class="text-blue-500 hover:underline" href="/yesterday">Yesterday's payments</a>
-          <a class="text-blue-500 hover:underline" href="/this-week">Payments this week</a>
-        </div>
-        <h1 class="pb-4 text-4xl font-medium">{{ page_name }}</h1>
-        <form>
-          <input
-            class="border"
-            name="search"
-            type="text"
-            placeholder="Search payments"
-            value="{{ search }}"
-          />
-          <select name="status"
+{% extends "base.html" %} {% block content%}
+
+<h1 class="pb-4 text-4xl font-medium">{{ page_name }}</h1>
+<form>
+  <input
+    class="border"
+    name="search"
+    type="text"
+    placeholder="Search payments"
+    value="{{ search }}"
+  />
+  <!-- <select name="status"
             class="border">
             <option {% if status == "" %} selected {% endif %} value="">All</option>
             <option {% if status == "completed" %} selected {% endif %} value="completed">Completed</option>
             <option {% if status == "pending" %} selected {% endif %} value="pending">Pending</option>
             <option {% if status == "failed" %} selected {% endif %} value="failed">Failed</option>
-          </select>
-          <button
-            class="border">Search</button>
-        </form>
-        <p class="pb-2 text-xl text-blue-700 font-medium">
-          Total takings: {{ total }}
-        </p>
-        <table>
-            <thead class="font-medium">
-              <tr>
-                <td>Amount</td>
-                <td>Date</td>
-                <td>Method</td>
-                <td>Status</td>
-                <td></td>
-              </tr>
-            </thead>
-          <tbody>
-            {% for payment in payments %}
-            <tr>
-              <td>{{ payment.amount }}</td>
-              <td>{{ payment.date }}</td>
-              <td>{{ payment.method }}</td>
-              <td>{{ payment.status }}</td>
-              <td></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    {% if dialog %}
-    <a href="/" class="fixed top-0 left-0 w-full h-full bg-black/50 z-10">
-    </a>
-    <div class="fixed bg-white left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-full min-h-80 max-w-screen-sm z-20 flex justify-center">
-      <p>Take a payment</p>
-    </div>
-    {% endif %}
-  </body>
-</html>
+          </select> -->
+  <button class="border">Search</button>
+</form>
+<p class="pb-2 text-xl text-blue-700 font-medium">
+  Total takings: {{ total_takings }}
+</p>
+<p class="pb-2 text-xl text-red-700 font-medium">
+  Total Refunds: {{ total_takings }}
+</p>
+<table>
+  <thead class="titles">
+    <tr>
+      <td>Amount</td>
+      <td>Date</td>
+      <td>Method</td>
+      <td>Status</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for payment in payments %}
+    <tr>
+      <td>{{ payment.amount }}</td>
+      <td>{{ payment.date }}</td>
+      <td>{{ payment.method }}</td>
+      <td>{{ payment.status }}</td>
+      <td>
+        <a href="" class="pb-2 text-l text-red-700 font-medium"> REFUND </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if dialog %}
+<a href="/" class="fixed top-0 left-0 w-full h-full bg-black/50 z-10"> </a>
+<div
+  class="fixed bg-white left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-full min-h-80 max-w-screen-sm z-20 flex justify-center"
+>
+  <p>Take a payment</p>
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>{{ page_name }} | LAET</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/payments.css" />
+    <link rel="stylesheet" href="/static/navbar.css" />
+  </head>
+  <body>
+    <!-- <div class="Navbar">
+      <img src="/static/DojoLogo.png" alt="" />
+      <label for="" class="NavElement">1</label>
+      <label for="" class="NavElement">2</label>
+      <label for="" class="NavElement">3</label>
+      <label for="" class="NavElement">4</label>
+    </div> -->
+    <div class="Navbar">
+      <a class="NavElement" href="/">All payments</a>
+      <a class="NavElement" href="/today">Today's payments</a>
+      <a class="NavElement" href="/yesterday">Yesterday's payments</a>
+      <a class="NavElement" href="/this-week">Payments this week</a>
+      <a class="NavElement" href="/take-a-payment">Take a payment</a>
+    </div>
+    <div class="w-full flex justify-center">
+      <div class="p-4">
+        <div class="pb-2"></div>
+        <h2 class="pb-2 text-2xl font-medium">LAET Payments</h2>
+        <!-- <a class="text-blue-500 hover:underline" href="/take-a-payment"
+          >Take a payment</a
+        > -->
+
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
