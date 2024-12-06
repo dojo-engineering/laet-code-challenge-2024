@@ -1,32 +1,72 @@
 from django.shortcuts import render
-from .payments_data import payments
-from .helpers import todaysPayments, yesterdaysPayments, thisWeeksPayments
+from .payments_data import payments_data
+from .helpers import sumPayments, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments
 
 # Create your views here.
 def index(request):
+    payments = todaysPayments(payments_data)
+    search = request.GET.get('search') if 'search' in request.GET else ""
+    status = request.GET.get('status') if 'status' in request.GET else ""
+    
+    paymentsToShow = searchPayments(payments, search, status)
+
     context = {
-        "payments": payments
+        "page_name": "All payments",
+        "payments": paymentsToShow,
+        "search": search,
+        "status": status,
+        "total": sumPayments(paymentsToShow),
     }
     
     return render(request, 'payments.html', context)
 
 def today(request):
+    payments = todaysPayments(payments_data)
+    search = request.GET.get('search') if 'search' in request.GET else ""
+    status = request.GET.get('status') if 'status' in request.GET else ""
+    
+    paymentsToShow = searchPayments(payments, search, status)
+
     context = {
-        "payments": todaysPayments(payments)
+        "page_name": "Today's payments",
+        "payments": paymentsToShow,
+        "search": search,
+        "status": status,
+        "total": sumPayments(paymentsToShow),
     }
 
     return render(request, 'payments.html', context)
 
 def yesterday(request):
+    payments = yesterdaysPayments(payments_data)
+    search = request.GET.get('search') if 'search' in request.GET else ""
+    status = request.GET.get('status') if 'status' in request.GET else ""
+    
+    paymentsToShow = searchPayments(payments, search, status)
+
     context = {
-        "payments": yesterdaysPayments(payments)
+        "page_name": "Yesterday's payments",
+        "payments": paymentsToShow,
+        "search": search,
+        "status": status,
+        "total": sumPayments(paymentsToShow),
     }
 
     return render(request, 'payments.html', context)
 
 def thisWeek(request):
+    payments = thisWeeksPayments(payments_data)
+    search = request.GET.get('search') if 'search' in request.GET else ""
+    status = request.GET.get('status') if 'status' in request.GET else ""
+    
+    paymentsToShow = searchPayments(payments, search, status)
+
     context = {
-        "payments": thisWeeksPayments(payments)
+        "page_name": "This week's payments",
+        "payments": paymentsToShow,
+        "search": search,
+        "status": status,
+        "total": sumPayments(paymentsToShow),
     }
 
     return render(request, 'payments.html', context)
