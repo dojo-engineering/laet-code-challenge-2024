@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>LAET Payments</title>
+  </head>
+  <body>
+    <h1>LAET Payments</h1>
+    <a href="/">All payments</a>
+    <a href="/today">Today's payments</a>
+    <a href="/yesterday">Yesterday's payments</a>
+    <a href="/this-week">Payments this week</a>
+    <table>
+      <tbody>
+        <tr>
+          <td>Amount</td>
+          <td>Payment Date</td>
+          <td>Payment Method</td>
+          <td>Payment Status</td>
+        </tr>
+        {% for payment in payments %}
+        <tr>
+          <td>{{ payment.amount }}</td>
+          <td>{{ payment.date }}</td>
+          <td>{{ payment.method }}</td>
+          <td>{{ payment.status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
