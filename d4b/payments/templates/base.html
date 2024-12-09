@@ -5,21 +5,41 @@
     <link rel="stylesheet" href="/static/payments.css" />
     <link rel="stylesheet" href="/static/navbar.css" />
   </head>
-  <body>
-    <div class="Navbar">
-      <a class="NavElement" href="/"><img src="/static/DojoLogo.png" /></a>
-      <a class="NavElement" href="/">All payments</a>
-      <a class="NavElement" href="/today">Today's payments</a>
-      <a class="NavElement" href="/yesterday">Yesterday's payments</a>
-      <a class="NavElement" href="/this-week">Payments this week</a>
-      <a class="NavElement" href="/take-a-payment">Take a payment</a>
-      <a class="NavElement" href="/tasks">Tasks</a>
-    </div>
-    <div class="w-full flex justify-center">
-      <div class="p-4">
-        <div class="pb-2"></div>
-        <h2 class="pb-2 text-3xl font-medium">LAET Payments</h2>
-        {% block content %}{% endblock %}
+  <body class="bg-gray-100">
+    <div class="flex justify-center p-4">
+      <div>
+        <div
+          class="max-w-screen-xl flex justify-between items-center gap-9 pl-4 pr-4 mb-4"
+        >
+          <a class="flex-shrink-0" href="/"
+            ><img class="h-8" src="/static/laet_logo.png"
+          /></a>
+          <a class="text-xl text-center hover:text-green-800 {% if path == "/" %} underline {% endif %}" href="/"
+            >All Payments</a
+          >
+          <a class="text-xl text-center hover:text-green-800 {% if path == "/today" %} underline {% endif %}" href="/today"
+            >Today's Payments</a
+          >
+          <a class="text-xl text-center hover:text-green-800 {% if path == "/yesterday" %} underline {% endif %}" href="/yesterday"
+            >Yesterday's Payments</a
+          >
+          <a class="text-xl text-center hover:text-green-800 {% if path == "/this-week" %} underline {% endif %}" href="/this-week"
+            >Payments This Week</a
+          >
+          <a
+            class="text-xl text-center hover:text-green-800 {% if path == "/take-a-payment" %} underline {% endif %}"
+            href="/take-a-payment"
+            >Take a Payment</a
+          >
+          <a class="text-xl text-center hover:text-green-800 {% if path == "/tasks" %} underline {% endif %}" href="/tasks"
+            >Tasks</a
+          >
+        </div>
+        <div class="bg-white rounded-xl p-8">
+          <div class="w-full flex justify-center">
+            <div class="flex-grow">{% block content %}{% endblock %}</div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

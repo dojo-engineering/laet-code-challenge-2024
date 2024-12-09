@@ -13,6 +13,7 @@ def index(request):
     paymentsToShow = searchPayments(payments, search, status)
 
     context = {
+        "path": "/",
         "page_name": "All payments",
         "payments": paymentsToShow,
         "search": search,
@@ -31,6 +32,7 @@ def today(request):
     paymentsToShow = searchPayments(payments, search, status)
 
     context = {
+        "path": "/today",
         "page_name": "Today's payments",
         "payments": paymentsToShow,
         "search": search,
@@ -49,6 +51,7 @@ def yesterday(request):
     paymentsToShow = searchPayments(payments, search, status)
 
     context = {
+        "path": "/yesterday",
         "page_name": "Yesterday's payments",
         "payments": paymentsToShow,
         "search": search,
@@ -67,6 +70,7 @@ def thisWeek(request):
     paymentsToShow = searchPayments(payments, search, status)
 
     context = {
+        "path": "/this-week",
         "page_name": "This week's payments",
         "payments": paymentsToShow,
         "search": search,
@@ -91,6 +95,7 @@ def take_a_payment(request):
     paymentsToShow = sortPaymentsByDate(payments_data)
 
     context = {
+        "path": "/take-a-payment",
         "page_name": "All payments",
         "payments": paymentsToShow,
         "search": "",
@@ -104,5 +109,9 @@ def take_a_payment(request):
     
     return render(request, 'payments.html', context)
 
-def tasks(request): 
-    return render(request, 'tasks.html')
+def tasks(request):
+    context = {
+        "path": "/tasks",
+    }
+
+    return render(request, 'tasks.html', context)
