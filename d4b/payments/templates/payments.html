@@ -9,13 +9,13 @@
     placeholder="Search payments"
     value="{{ search }}"
   />
-  <!-- <select name="status"
+  <select name="status"
             class="border">
             <option {% if status == "" %} selected {% endif %} value="">All</option>
             <option {% if status == "completed" %} selected {% endif %} value="completed">Completed</option>
             <option {% if status == "pending" %} selected {% endif %} value="pending">Pending</option>
             <option {% if status == "failed" %} selected {% endif %} value="failed">Failed</option>
-          </select> -->
+          </select>
   <button class="border">Search</button>
 </form>
 <p class="pb-2 text-xl text-blue-700 font-medium">
@@ -54,6 +54,31 @@
 <div
   class="fixed bg-white left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 w-full min-h-80 max-w-screen-sm z-20 flex justify-center"
 >
-  <p>Take a payment</p>
+  <table>
+    <thead class="Take a Payment">
+      <tr><td href="">{{ take_payment_screen }}</td></tr>
+      </tr>
+      <tr>
+        <td><a href="{% url 'button' '7' take_payment_screen  %}">7</a></td>
+        <td><a href="{% url 'button' '8'  take_payment_screen  %}">8</a></td>
+        <td><a href="{% url 'button' '9' take_payment_screen  %}">9</a></td>
+      </tr>
+      <tr>
+        <td><a href="{% url 'button' '4'  take_payment_screen  %}">4</a></td>
+        <td><a href="{% url 'button' '5' take_payment_screen  %}">5</a></td>
+        <td><a href="{% url 'button' '6'  take_payment_screen  %}">6</a></td>
+      </tr>
+      <tr>
+        <td><a href="{% url 'button' '1' take_payment_screen  %}">1</a></td>
+        <td><a href="{% url 'button' '2'  take_payment_screen  %}">2</a></td>
+        <td><a href="{% url 'button' '3' take_payment_screen  %}">3</a></td>
+      </tr>
+      <tr>
+        <td><a href="{% url 'button' '0'  take_payment_screen  %}">0</a></td>
+        <td><a href="{% url 'back' '-1' take_payment_screen %}">&larr;</a></td>
+        <td><a href="{% url 'enter' '-1' take_payment_screen %}">=</a></td>
+      </tr>
+    </thead>
+  </table>
 </div>
 {% endif %} {% endblock %}

@@ -18,4 +18,9 @@ tr {
 
 td {
   padding-right: 40px;
+  position: relative;
+}
+
+.payement_screen {
+  height: 30px;
 }

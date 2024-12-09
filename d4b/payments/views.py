@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .payments_data import payments_data
+from django.views import View
+from .payments_data import Payment, payments_data
 from .helpers import sortPaymentsByDate, sumPayments, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, refundPayments
 
 # Create your views here.
@@ -77,6 +78,7 @@ def thisWeek(request):
 
 def take_a_payment(request):
     paymentsToShow = sortPaymentsByDate(payments_data)
+    temp = TakePayment()
 
     context = {
         "page_name": "All payments",
@@ -86,6 +88,54 @@ def take_a_payment(request):
         "total_takings": sumPayments(paymentsToShow),
         "total_refunds": refundPayments(paymentsToShow),
         "dialog": True,
+        "take_payment_screen": " "
     }
     
     return render(request, 'payments.html', context)
+
+
+class TakePayment(View): 
+
+    def __init__(self):
+        self.value = '' 
+    
+    def get(self, request, number, current_val): 
+        if ('button' in request.path):
+            self.buttonPressed(number, current_val)
+        elif ('back' in request.path):
+            self.backButton(current_val)
+        elif('enter' in request.path):
+            self.enterButton(current_val)
+        return self.render(request)
+    
+    def buttonPressed(self, number, current_val): 
+        self.value += (current_val + number)
+        print(self.value)
+
+    def backButton(self, current_val): 
+        try: 
+            print(current_val)
+            print(current_val[1])
+            self.value = current_val[:-1]
+        except:
+            self.value = " " 
+
+    def enterButton(self, current_val):
+        new_payment = Payment(current_val, "2025-11-25", "Visa", "Success")
+        payments_data.append(new_payment)
+        self.value = " "
+    
+    def render(self, request): 
+        paymentsToShow = sortPaymentsByDate(payments_data)
+        context = {
+        "page_name": "All payments",
+        "payments": paymentsToShow,
+        "search": "",
+        "status": "",
+        "total_takings": sumPayments(paymentsToShow),
+        "total_refunds": refundPayments(paymentsToShow),
+        "dialog": True,
+        "take_payment_screen": self.value
+    }
+    
+        return render(request, 'payments.html', context)
