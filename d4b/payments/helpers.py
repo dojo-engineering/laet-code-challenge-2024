@@ -22,5 +22,5 @@ def searchPayments(payments: List[Payment], search: str, status: str):
 def sortPaymentsByDate(payments: List[Payment]):
     return payments
 
-def refundPayment(id: str):
+def refundPayment(payments: List[Payment], id: str):
     return

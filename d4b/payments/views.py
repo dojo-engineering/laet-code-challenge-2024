@@ -3,9 +3,14 @@ from django.views import View
 
 from .forms import TakePaymentForm
 from .payments_data import Payment, payments_data
-from .helpers import sortPaymentsByDate, calculateTotalTakings, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, calculateRefunds
+from .helpers import refundPayment, sortPaymentsByDate, calculateTotalTakings, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, calculateRefunds
 
 def index(request):
+    refundId = request.GET.get('refund') if 'refund' in request.GET else ""
+
+    if refundId:
+        refundPayment(payments_data, refundId)
+
     payments = sortPaymentsByDate(payments_data)
     search = request.GET.get('search') if 'search' in request.GET else ""
     status = request.GET.get('status') if 'status' in request.GET else ""
@@ -25,6 +30,11 @@ def index(request):
     return render(request, 'payments.html', context)
 
 def today(request):
+    refundId = request.GET.get('refund') if 'refund' in request.GET else ""
+
+    if refundId:
+        refundPayment(payments_data, refundId)
+
     payments = todaysPayments(sortPaymentsByDate(payments_data))
     search = request.GET.get('search') if 'search' in request.GET else ""
     status = request.GET.get('status') if 'status' in request.GET else ""
@@ -44,6 +54,11 @@ def today(request):
     return render(request, 'payments.html', context)
 
 def yesterday(request):
+    refundId = request.GET.get('refund') if 'refund' in request.GET else ""
+
+    if refundId:
+        refundPayment(payments_data, refundId)
+
     payments = yesterdaysPayments(sortPaymentsByDate(payments_data))
     search = request.GET.get('search') if 'search' in request.GET else ""
     status = request.GET.get('status') if 'status' in request.GET else ""
@@ -63,6 +78,11 @@ def yesterday(request):
     return render(request, 'payments.html', context)
 
 def thisWeek(request):
+    refundId = request.GET.get('refund') if 'refund' in request.GET else ""
+
+    if refundId:
+        refundPayment(payments_data, refundId)
+        
     payments = thisWeeksPayments(sortPaymentsByDate(payments_data))
     search = request.GET.get('search') if 'search' in request.GET else ""
     status = request.GET.get('status') if 'status' in request.GET else ""

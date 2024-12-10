@@ -46,7 +46,7 @@
         <td>{{ payment.method }}</td>
         <td>{{ payment.status }}</td>
         <td class="justify-end items-middle">
-          <a href="" class="p-2 text-center block rounded-full bg-green-100 hover:bg-green-200 transition-all"> Refund </a>
+          <a href="{{path}}?refund={{payment.id}}" class="p-2 text-center block rounded-full bg-green-100 hover:bg-green-200 transition-all"> Refund </a>
         </td>
       </tr>
       {% endfor %}
