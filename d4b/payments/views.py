@@ -3,7 +3,7 @@ from django.views import View
 
 from .forms import TakePaymentForm
 from .payments_data import Payment, payments_data
-from .helpers import sortPaymentsByDate, sumPayments, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, refundPayments
+from .helpers import sortPaymentsByDate, calculateTotalTakings, searchPayments, todaysPayments, yesterdaysPayments, thisWeeksPayments, calculateRefunds
 
 def index(request):
     payments = sortPaymentsByDate(payments_data)
@@ -14,12 +14,12 @@ def index(request):
 
     context = {
         "path": "/",
-        "page_name": "All payments",
+        "page_name": "All Payments",
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total_takings": sumPayments(paymentsToShow),
-        "total_refunds": refundPayments(paymentsToShow)
+        "total_takings": calculateTotalTakings(paymentsToShow),
+        "total_refunds": calculateRefunds(paymentsToShow)
     }
     
     return render(request, 'payments.html', context)
@@ -33,12 +33,12 @@ def today(request):
 
     context = {
         "path": "/today",
-        "page_name": "Today's payments",
+        "page_name": "Today's Payments",
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total_takings": sumPayments(paymentsToShow),
-        "total_refunds": refundPayments(paymentsToShow)
+        "total_takings": calculateTotalTakings(paymentsToShow),
+        "total_refunds": calculateRefunds(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -52,12 +52,12 @@ def yesterday(request):
 
     context = {
         "path": "/yesterday",
-        "page_name": "Yesterday's payments",
+        "page_name": "Yesterday's Payments",
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total_takings": sumPayments(paymentsToShow),
-        "total_refunds": refundPayments(paymentsToShow)
+        "total_takings": calculateTotalTakings(paymentsToShow),
+        "total_refunds": calculateRefunds(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -71,12 +71,12 @@ def thisWeek(request):
 
     context = {
         "path": "/this-week",
-        "page_name": "This week's payments",
+        "page_name": "Payments This Week",
         "payments": paymentsToShow,
         "search": search,
         "status": status,
-        "total_takings": sumPayments(paymentsToShow),
-        "total_refunds": refundPayments(paymentsToShow)
+        "total_takings": calculateTotalTakings(paymentsToShow),
+        "total_refunds": calculateRefunds(paymentsToShow)
     }
 
     return render(request, 'payments.html', context)
@@ -96,12 +96,12 @@ def take_a_payment(request):
 
     context = {
         "path": "/take-a-payment",
-        "page_name": "All payments",
+        "page_name": "All Payments",
         "payments": paymentsToShow,
         "search": "",
         "status": "",
-        "total_takings": sumPayments(paymentsToShow),
-        "total_refunds": refundPayments(paymentsToShow),
+        "total_takings": calculateTotalTakings(paymentsToShow),
+        "total_refunds": calculateRefunds(paymentsToShow),
         "dialog": True,
         "take_payment_screen": " ",
         "payment_form": form

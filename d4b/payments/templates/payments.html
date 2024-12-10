@@ -12,7 +12,7 @@
     />
     <select name="status" class="grow-[2] h-12 text-lg border-2 border-gray-300 rounded-md pl-3 pr-3">
               <option {% if status == "" %} selected {% endif %} value="">All</option>
-              <option {% if status == "completed" %} selected {% endif %} value="completed">Completed</option>
+              <option {% if status == "success" %} selected {% endif %} value="success">Success</option>
               <option {% if status == "refunded" %} selected {% endif %} value="refunded">Refunded</option>
               <option {% if status == "failed" %} selected {% endif %} value="failed">Failed</option>
     </select>
