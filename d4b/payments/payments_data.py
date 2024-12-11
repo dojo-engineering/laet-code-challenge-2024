@@ -93,4 +93,7 @@ payments_data = [
     Payment("ad67131f-f4d2-5719-a87a-abaf2dfadc3c", 61, "2024-12-10", "MasterCard", "Success"),
     Payment("2b2161c8-a038-5519-a54a-d078422c317c", 50, "2024-12-09", "Visa", "Failed"),
     Payment("fc59ace7-c659-5954-8771-86b839de5692", 72, "2024-12-11", "Amex", "Success"),
+    Payment("fc59ace7-c659-5954-8771-86b839de5692", 72, "2024-12-11", "Visa", "Success"),
+    Payment("fc59ace7-c659-5954-8771-86b839de5692", 72, "2024-12-11", "MasterCard", "Failed"),
+    Payment("fc59ace7-c659-5954-8771-86b839de5692", 72, "2024-12-11", "Paypal", "Refunded"),
 ]
