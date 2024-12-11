@@ -1,14 +1,15 @@
 from typing import List
 from .payments_data import Payment
 
-# This function calculates the total amount of a list of payments
 # Hold the command key and click on "[Payment]" below to see the properties available on payment objects
-# Think about whether you want to include all payments in this sum or only certain ones
+Payment
+
+# This function takes a list of payments and returns a number to show for the Total Takings on the website
 def calculateTotalTakings(payments: List[Payment]):
     # Return a number
     return 0
 
-# This function calculates the total amount of all payments with a refunded status
+# This function takes a list of payments and returns a number to show for the Total Refunds on the website
 def calculateRefunds(payments: List[Payment]):
     # Return a number
     return 0
